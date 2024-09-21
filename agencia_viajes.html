@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Agencia de Viajes - Búsqueda y Reserva</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Agencia de Viajes</h1>
+    </header>
+    <main>
+        <h2>Búsqueda de Vuelos y Paquetes</h2>
+        <form id="search-form">
+            <input type="text" placeholder="Origen" required>
+            <input type="text" placeholder="Destino" required>
+            <input type="date" placeholder="Fecha de ida" required>
+            <input type="date" placeholder="Fecha de vuelta">
+            <select>
+                <option value="">Tipo de viaje</option>
+                <option value="vuelo">Solo vuelo</option>
+                <option value="paquete">Paquete turístico</option>
+            </select>
+            <button type="submit">Buscar</button>
+        </form>
+    </main>
+</body>
+</html>
