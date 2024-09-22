@@ -13,6 +13,7 @@
     </header>
     <main>
         <h2>Búsqueda de Vuelos y Paquetes</h2>
+        <form id="search-form" action="buscar_vuelos.php" method="POST"></form>
         <form id="search-form">
             <input type="text" placeholder="Origen" required>
             <input type="text" placeholder="Destino" required>
@@ -26,5 +27,31 @@
             <button type="submit">Buscar</button>
         </form>
     </main>
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            fetch('buscar_vuelos.php', {
+                method: 'POST',
+                body: new FormData(this)
+            })
+            .then(response => response.json())
+            .then(data => {
+                let resultadosHTML = '<h3>Resultados de la búsqueda:</h3>';
+                data.forEach(vuelo => {
+                    resultadosHTML += `
+                        <div>
+                            <p>Aerolínea: ${vuelo.aerolinea}</p>
+                            <p>Precio: ${vuelo.precio}</p>
+                            <p>Horario: ${vuelo.horario}</p>
+                        </div>
+                    `;
+                });
+                document.getElementById('resultados').innerHTML = resultadosHTML;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+        </script>
+
 </body>
 </html>
