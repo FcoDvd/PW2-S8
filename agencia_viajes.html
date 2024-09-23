@@ -5,53 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="estilos.css">
     <title>Agencia de Viajes - Búsqueda y Reserva</title>
-    
 </head>
 <body>
     <header>
-        <h1>Agencia de Viajes</h1>
+    <h1>Agencia de Viajes</h1>
     </header>
-    <main>
-        <h2>Búsqueda de Vuelos y Paquetes</h2>
-        <form id="search-form" action="buscar_vuelos.php" method="POST"></form>
-        <form id="search-form">
-            <input type="text" placeholder="Origen" required>
-            <input type="text" placeholder="Destino" required>
-            <input type="date" placeholder="Fecha de ida" required>
-            <input type="date" placeholder="Fecha de vuelta">
-            <select>
-                <option value="">Tipo de viaje</option>
-                <option value="vuelo">Solo vuelo</option>
-                <option value="paquete">Paquete turístico</option>
-            </select>
-            <button type="submit">Buscar</button>
-        </form>
-    </main>
-    <script>
-        document.getElementById('search-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            fetch('buscar_vuelos.php', {
-                method: 'POST',
-                body: new FormData(this)
-            })
-            .then(response => response.json())
-            .then(data => {
-                let resultadosHTML = '<h3>Resultados de la búsqueda:</h3>';
-                data.forEach(vuelo => {
-                    resultadosHTML += `
-                        <div>
-                            <p>Aerolínea: ${vuelo.aerolinea}</p>
-                            <p>Precio: ${vuelo.precio}</p>
-                            <p>Horario: ${vuelo.horario}</p>
-                        </div>
-                    `;
-                });
-                document.getElementById('resultados').innerHTML = resultadosHTML;
-            })
-            .catch(error => console.error('Error:', error));
-        });
-        </script>
-
+    <h2>Búsqueda de Vuelos y Paquetes</h2>
+    <form action="buscar_vuelos.php" method="POST">
+        <input type="text" name="origen" placeholder="Origen" required>
+        <input type="text" name="destino" placeholder="Destino" required>
+        <input type="date" name="fecha_ida" required>
+        <input type="date" name="fecha_vuelta">
+        <select name="tipo_viaje">
+            <option value="">Tipo de viaje</option>
+            <option value="vuelo">Solo vuelo</option>
+            <option value="paquete">Paquete turístico</option>
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
 </body>
 </html>
